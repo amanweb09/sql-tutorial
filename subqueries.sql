@@ -102,9 +102,16 @@ WHERE EXISTS (  --where exists a customer with the following condition
 )
 
 -- --------------------------------------
--- Subquery in the select clause
+-- Subquery in the SELECT clause
 -- --------------------------------------
 SELECT *, 
 (SELECT AVG(amount) FROM payments) AS average_payment,
 amount-average_payment AS avg_difference
 FROM payments;
+
+
+-- --------------------------------------
+-- Subquery in the FROM clause
+-- --------------------------------------
+SELECT studentID
+FROM (SELECT * FROM fees WHERE is_paid=1)
